@@ -16,8 +16,8 @@
 
 
 
-	echo "insert into groupes(Nom_Groupe, ID_Prof, ID_Session, Ensemble) values(\"".$_POST['nomgroupe']."\", ".$_SESSION['uid'].",".$_POST['session'].",".$_POST['ensemble'].")";
-	phpQuery("insert into groupes(Nom_Groupe, ID_Prof, ID_Session, Ensemble) values(\"".$_POST['nomgroupe']."\", ".$_SESSION['uid'].",".$_POST['session'].",".$_POST['ensemble'].")");
+	echo "insert into groupes(nom_groupe, id_prof, id_session, ensemble) values(\"".$_POST['nomgroupe']."\", ".$_SESSION['uid'].",".$_POST['session'].",".$_POST['ensemble'].")";
+	phpQuery("insert into groupes(nom_groupe, id_prof, id_session, ensemble) values(\"".$_POST['nomgroupe']."\", ".$_SESSION['uid'].",".$_POST['session'].",".$_POST['ensemble'].")");
 	echo  "insert into groupes(nom_groupe, id_prof, session, ensemble) values(\"".$_POST['nomgroupe']."\", ".$_SESSION['uid'].",".$_POST['session'].",".$_POST['ensemble'].")";
 	
 

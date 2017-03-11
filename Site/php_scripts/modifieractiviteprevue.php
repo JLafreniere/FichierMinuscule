@@ -57,14 +57,14 @@ function verifier_date_activite()
     if(is_in_session($query))
     {
        $req = "update activites_prevues
-                     set Date_activite='{$_POST['DATE_ACT']}' ,
-                         Endroit='".formater($_POST['ENDROIT'])."',
-                         Frais={$_POST['FRAIS']},
-                         ID_ACTIVITE={$_POST['ID_ACTIVITE']},
-                         PARTICIPANTS_MAX={$_POST['PARTICIPANTS_MAX']},
-                         HEURE_DEBUT='{$_POST['HEURE_ACT']}', 
-                         RESPONSABLE={$_POST['RESPONSABLE']} 
-                         where ID_activite_prevue = {$_POST['ID_ACTIVITE_PREVUE']}";  
+                     set date_activite='{$_POST['DATE_ACT']}' ,
+                         endroit='".formater($_POST['ENDROIT'])."',
+                         frais={$_POST['FRAIS']},
+                         id_activite={$_POST['ID_ACTIVITE']},
+                         participant_max={$_POST['PARTICIPANTS_MAX']},
+                         heure_debut='{$_POST['HEURE_ACT']}', 
+                         responsable={$_POST['RESPONSABLE']} 
+                         where id_activite_prevue = {$_POST['ID_ACTIVITE_PREVUE']}";  
       phpQuery($req);
       echo "L'activité a été modifiée avec succès!";
     }

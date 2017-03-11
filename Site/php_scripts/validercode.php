@@ -1,9 +1,13 @@
 <?php
 include_once 'connexion_bd.php';
-  include_once 'formater_champ.php';
-session_start();
+include_once 'formater_champ.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+            }
+            
 $_SESSION['code_insc'] = $_POST['code'];
-$query = "select id_utilisateur, id_groupe from utilisateurs where BINARY CODE_ACCES = '".$_POST['code']."'";
+$query = "select id_utilisateur, id_groupe from utilisateurs where BINARY code_acces = '".$_POST['code']."'";
   
   $mysqli = connexion();
   $myArray = array();

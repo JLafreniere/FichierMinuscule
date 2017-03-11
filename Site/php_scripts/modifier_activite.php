@@ -30,11 +30,11 @@
 		}
 
 		$req = "UPDATE activites
-				set Nom_Activite = '".formater($_POST['nom_act'])."',
-					Duree = {$_POST['duree']},
-					Ponderation = {$_POST['nbr_pts']},
-					Commentaire = '".formater($_POST['desc'])."'
-					where ID_Activite = {$_POST['id_act']}";
+				set nom_activite = '".formater($_POST['nom_act'])."',
+					duree = {$_POST['duree']},
+					ponderation = {$_POST['nbr_pts']},
+					commentaire = '".formater($_POST['desc'])."'
+					where id_activite = {$_POST['id_act']}";
 					
 		phpQuery($req);
 		echo "Mise à jour de l'activité réussie";

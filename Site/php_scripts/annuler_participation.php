@@ -19,14 +19,14 @@ if($_POST['date_activite'] == date('Y-m-d'))
 	}
 	else
 	{
-		$query = "delete from utilisateur_activites where ID_Eleve_Activite = {$_POST['id_act_utilisateur']}";
+		$query = "delete from utilisateur_activites where id_eleve_activite = {$_POST['id_act_utilisateur']}";
 		phpQuery($query);
 		echo "Vous avez quitté l'activité avec succès";
 	}
 }
 else
 {
-		$query = "delete from utilisateur_activites where ID_Eleve_Activite = {$_POST['id_act_utilisateur']}";
+		$query = "delete from utilisateur_activites where id_eleve_activite = {$_POST['id_act_utilisateur']}";
 		phpQuery($query);
 		echo "Vous avez quitté l'activité avec succès";
 	}

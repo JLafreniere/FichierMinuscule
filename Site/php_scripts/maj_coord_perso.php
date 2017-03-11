@@ -7,11 +7,11 @@
 	function mettre_a_jour($id){
 		$req = "update utilisateurs
 				set
-				Prenom = '".formater($_POST['prenom'])."',
-				Nom = '".formater($_POST['nom'])."',
-				Courriel = '".formater($_POST['courriel'])."',
-				Telephone = '".$_POST['telephone']."',
-				Sexe = '".$_POST['sexe']."'";
+				prenom = '".formater($_POST['prenom'])."',
+				nom = '".formater($_POST['nom'])."',
+				courriel = '".formater($_POST['courriel'])."',
+				telephone = '".$_POST['telephone']."',
+				sexe = '".$_POST['sexe']."'";
 
 		$query = "select * from utilisateurs where id_utilisateur =".$id;
 	    $mysqli = connexion();
@@ -21,7 +21,7 @@
 
 				  if ($row['ID_Groupe'] == 0)
 				  {
-				  	$req = $req .",Type_Utilisateur ='".$_POST['type_user']."'
+				  	$req = $req .",type_utilisateur ='".$_POST['type_user']."'
 					where id_utilisateur = ".$_SESSION['uid'].";";
 					phpQuery($req);
 					echo 'Mise à jour du profil réussie';

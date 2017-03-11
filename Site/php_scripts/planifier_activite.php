@@ -8,11 +8,11 @@ if (session_status() == PHP_SESSION_NONE) {
             }
 
 	if(isset($_SESSION['admin'])){
-    if ($_SESSION['admin'] == '0'){
-     header('Location: accueil.php');
-    }
-
-	}else{ header('Location: accueil.php');};
+	    if ($_SESSION['admin'] == '0'){
+	     header('Location: accueil.php');
+	    }
+	}
+else{ header('Location: accueil.php');};
 
 date_default_timezone_set('America/Montreal');
 
@@ -72,7 +72,6 @@ function verifier_date_activite()
 											 "',".$_POST['nom_act'].", 0, 0, ".$_POST['responsable'].");";
 			phpQuery($req);
 		}
-		
 		if($_POST['occurence'] > 0)
 		{
 			echo "Les activités ont été planifiées avec succès";
@@ -81,10 +80,6 @@ function verifier_date_activite()
 		{
 			echo "L'activité a été planifiée avec succès";
 		}
-		
-			
-	
-
 	}
 	else
 	{
