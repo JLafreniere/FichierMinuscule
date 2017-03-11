@@ -13,7 +13,7 @@ if(isset($_SESSION['admin'])){
 
 <html ng-app='app_angular' ng-controller="ctrl">
   <head>
-    <?php include 'components/headContent.php';?>
+    <?php include 'components/headcontent.php';?>
     <title>Défi Santé - Administration</title>
   </head>
   <body class="ng-cloak">
@@ -494,7 +494,7 @@ if(isset($_SESSION['admin'])){
 <script src="js/scripts.js"></script>
 <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
 
-<?php include 'js/ScriptsAdmin.php';
+<?php include 'js/scriptsadmin.php';
 
 include 'components/modals_admin.php';
 ?>

@@ -1,6 +1,6 @@
 <html ng-app='app_angular' ng-controller="ctrl">
   <head>
-    <?php include 'components/headContent.php';?>
+    <?php include 'components/headcontent.php';?>
       <meta charset="UTF-8">
       <title>Défi Santé - Activités</title>
   </head>

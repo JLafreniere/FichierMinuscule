@@ -6,7 +6,7 @@
 
 <html ng-app='empty_app' ng-controller="ctrl">
   <head>
-    <?php include_once 'components/headContent.php';?>
+    <?php include_once 'components/headcontent.php';?>
     <style>
     .remove_margin_bottom{
         margin-bottom: 0px !important;

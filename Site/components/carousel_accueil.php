@@ -1,6 +1,6 @@
 <html>
     <head>
-    <?php include_once 'headContent.php';?>
+    <?php include_once 'headcontent.php';?>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     </head>
 

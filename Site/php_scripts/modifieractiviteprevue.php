@@ -1,7 +1,7 @@
 <?php                
 include_once 'connexion_bd.php';
 include_once 'formater_champ.php';
-include_once 'queryFunctions.php'; 
+include_once 'queryfunctions.php'; 
 if (session_status() == PHP_SESSION_NONE) {
             session_start();
             }
