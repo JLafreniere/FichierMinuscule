@@ -1,0 +1,248 @@
+
+.fc-event{
+ cursor: pointer;
+}           
+.fc-day-grid-event > .fc-content {
+white-space: normal;
+}
+.modalinsact{
+            bottom:20% !important;
+}
+
+nav{
+	background-color:#71C0E5 !important:;
+}
+
+footer.page-footer{
+	background-color:#71C0E5;
+	color: black;
+}
+
+.ng-cloak { display: none !important; }
+.mr{
+  margin-right: 35px;
+}
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+   #calendar div div h2{
+text-transform: capitalize;
+   }
+
+button{
+	background-color: grey;
+
+}
+
+/* Css sur grands écans */
+ @media screen and (min-width: 700px) {
+   
+    .modal 
+    { 
+      background-color: white !important;
+      bottom: 35%;
+      width: 360px;
+    }
+
+     #modal_code /* Modal de code d'accès */
+    {
+      height: 400px;    
+    }
+
+    #modal_ins /* Modal d'inscription */
+    {
+      width: 400px;
+      bottom: 20%;
+      height: 100% !important;
+      max-height: 92%;
+      bottom: 10%;
+    }
+
+   #modal_login /* Modal de connexion */
+    {
+      height: 550px;
+    }
+
+    #modal_login .modal-content
+    {
+      padding-bottom: 0px;
+      height: 100%;
+    }
+
+    #modal_planif /* Modal de planification d'activité */
+    {
+      height: 60%;
+    }
+
+    .slider .slides li img {
+    background-color: #fff;
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    }
+
+    .slider  .slides  {
+    background-color: transparent;
+    margin: 0;
+    }
+
+    .slider .slides li,{
+     height:520px !important;
+    }
+
+   .slider .slides,.slider{
+    height:540px  !important;
+    }
+
+    .indicators{
+     z-index:3 !important;
+    }
+  }
+
+/* CSS sur petits écrans (mobiles) */
+@media screen and (max-width: 699px) 
+{
+
+    .modal 
+    { 
+    
+      width: 90% !important;
+      margin-left: 5% !important;
+      margin-right: 5% !important;
+    }
+
+    #modal_code /* Modal de connexion */
+    {
+      height: 350px;
+      overflow-y: hidden !important ; /* Enlève la scroll bar */
+    }
+
+
+    #modal_ins /* Modal d'inscription */
+    {
+      height: 100%;
+    }
+
+    #modal_login
+    {
+      height: 500px;
+      width:90%;
+      max-height: 80%;
+      overflow-y: hidden !important ; /* Enlève la scroll bar */
+
+    }
+  
+    #modal_login .modal-content
+    {
+      padding-bottom: 0px;
+      height: 100%;
+
+    }
+
+    #modal_planif
+    {
+      height: 100%;
+      max-height: 90%;
+      bottom:10%;
+
+    }
+
+    .btn{
+      width: 100% !important;
+    }
+
+
+}
+
+    #imgDef 
+    {
+      width: 200px; height: 200px;
+    }
+
+    .input-field label {
+    font-size: 12px !important;
+    }
+
+    .modal-content{
+    	background-color: white;
+    }
+
+
+
+.collapsible-body{
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+
+.collapsible-body:odd{
+	
+	background-color: grey;
+}
+
+.collapsibleWithButton{
+
+  padding-bottom: 45px;
+}
+.margin-right{
+  margin-right: 15px;
+}
+
+
+
+ 
+.presence:nth-child(odd) {
+  background-color: #FFFFFF;
+margin-bottom: 0px;
+height: 45px;
+}
+
+.field{
+  margin-top: 10px;
+
+}
+
+#li_activite .collapsible-body .row input
+{
+  color:darkgrey;
+}
+#li_activite .collapsible-body .row label
+{
+  color:black;
+}       
+
+  @media screen and (max-width: 799px) {
+    .slider .slides li img {
+                width:294px !important;
+                background-color: #fff;
+                height:200px !important;
+
+            background-size:100% auto;
+            background-repeat: no-repeat;
+
+   }
+        .slider .slides {
+             background-color: transparent;
+             margin: 0;
+             height:300px !important;
+
+            }
+  .slider{
+    height:360px !important;
+  }
+        
+
+}
+
+
+
+.btn{
+  width: 275px; height: 30px !important!; margin-top: 10px !important;
+}
