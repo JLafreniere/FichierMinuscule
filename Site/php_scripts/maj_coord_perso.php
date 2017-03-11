@@ -21,7 +21,7 @@
 
 				  if ($row['ID_Groupe'] == 0)
 				  {
-				  	$req = $req .",Type_Utilisateur ='".$_POST['type_user']."'
+				  	$req = $req .",type_utilisateur ='".$_POST['type_user']."'
 					where id_utilisateur = ".$_SESSION['uid'].";";
 					phpQuery($req);
 					echo 'Mise à jour du profil réussie';

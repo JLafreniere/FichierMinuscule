@@ -9,18 +9,18 @@
 
         $scope.liste_activites = <?php echo phpSelectQuery('select * from activites where hidden=false or hidden is null')?>;
         $scope.activites = <?php 
-                            echo phpSelectQuery("select a.ID_Activite, a.Nom_Activite, ap.date_activite, ap.Heure_Debut, a.Duree, a.Ponderation, ap.Frais, ap.Endroit, a.Commentaire,                           ua.ID_Eleve_Activite, ap.ID_activite_prevue
+                            echo phpSelectQuery("select a.id_activite, a.nom_activite, ap.date_activite, ap.heure_debut, a.duree, a.ponderation, ap.frais, ap.endroit, a.commentaire,                           ua.id_eleve_activite, ap.id_activite_prevue
                                                 from utilisateur_activites ua, activites_prevues ap, activites a 
-                                                where ua.ID_Utilisateur = {$_SESSION['uid']} and 
+                                                where ua.id_utilisateur = {$_session['uid']} and 
                             (ap.hidden = 0 or ap.hidden is null) and
-                                                ua.ID_Activite_prevue = ap.ID_activite_prevue and
-                                                ap.ID_Activite = a.ID_Activite
+                                                ua.id_activite_prevue = ap.id_activite_prevue and
+                                                ap.id_activite = a.id_activite
                             order by ap.presences_prises
                             ")
                             ?>;
 
         $scope.activites_responsable = <?php 
-                  echo phpSelectQuery("select * from activites, activites_prevues where (activites_prevues.hidden=0 or activites_prevues.hidden is null) and activites_prevues.id_activite = activites.id_activite and activites.id_activite in(select id_activite from activites_prevues where responsable = ".$_SESSION['uid']." order by activites_prevues.presences_prises ASC )")
+                  echo phpSelectQuery("select * from activites, activites_prevues where (activites_prevues.hidden=0 or activites_prevues.hidden is null) and activites_prevues.id_activite = activites.id_activite and activites.id_activite in(select id_activite from activites_prevues where responsable = ".$_SESSION['uid']." order by activites_prevues.presences_prises asc )")
                   ?>;
 
 
@@ -28,11 +28,11 @@
         $scope.points_debut = <?php echo phpSelectQuery('select sum(ponderation) as points_debut, utilisateurs.id_utilisateur
             from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes 
             where activites_prevues.id_activite = activites.id_activite 
-            and utilisateur_activites.id_activite_prevue = activites_prevues.ID_activite_prevue 
+            and utilisateur_activites.id_activite_prevue = activites_prevues.id_activite_prevue 
             and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur
-            and utilisateurs.ID_Groupe = groupes.ID_Groupe
-            and groupes.ID_Session = sessions.ID_Session
-            and activites_prevues.date_activite > sessions.Debut_Session
+            and utilisateurs.id_groupe = groupes.id_groupe
+            and groupes.id_session = sessions.id_session
+            and activites_prevues.date_activite > sessions.debut_session
             and activites_prevues.date_activite < sessions.mi_session
             and utilisateur_activites.present = 1
             and utilisateur_activites.id_utilisateur = '.$_SESSION['uid'].'
@@ -41,11 +41,11 @@
         $scope.points_fin = <?php echo phpSelectQuery('select sum(ponderation) as points_fin, utilisateurs.id_utilisateur
             from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes 
             where activites_prevues.id_activite = activites.id_activite 
-            and utilisateur_activites.id_activite_prevue = activites_prevues.ID_activite_prevue 
+            and utilisateur_activites.id_activite_prevue = activites_prevues.id_activite_prevue 
             and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur
-            and utilisateurs.ID_Groupe = groupes.ID_Groupe
-            and groupes.ID_Session = sessions.ID_Session
-            and activites_prevues.date_activite > sessions.mi_Session
+            and utilisateurs.id_groupe = groupes.id_groupe
+            and groupes.id_session = sessions.id_session
+            and activites_prevues.date_activite > sessions.mi_session
             and activites_prevues.date_activite < sessions.fin_session
             and utilisateur_activites.present = 1
             and utilisateur_activites.id_utilisateur = '.$_SESSION['uid'].'

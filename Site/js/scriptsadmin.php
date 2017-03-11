@@ -3,9 +3,9 @@
     app.controller("ctrl", function($scope) {
 
 
-        $scope.eleves = <?php echo phpSelectQuery('select id_utilisateur, nom, prenom, id_groupe,code_acces, actif, courriel, telephone, sexe, username, password, administrateur from utilisateurs order by nom ASC')?>;
+        $scope.eleves = <?php echo phpSelectQuery('select id_utilisateur, nom, prenom, id_groupe,code_acces, actif, courriel, telephone, sexe, username, password, administrateur from utilisateurs order by nom asc')?>;
 
-        $scope.groupes = <?php echo phpSelectQuery('select id_groupe, nom_groupe, id_prof, ensemble, nom_session, groupes.id_session, sessions.nom_session from groupes, sessions where groupes.id_session = sessions.id_session order by sessions.debut_session,  groupes.nom_groupe ASC')?>;
+        $scope.groupes = <?php echo phpSelectQuery('select id_groupe, nom_groupe, id_prof, ensemble, nom_session, groupes.id_session, sessions.nom_session from groupes, sessions where groupes.id_session = sessions.id_session order by sessions.debut_session,  groupes.nom_groupe asc')?>;
 
         $scope.activites = <?php echo phpSelectQuery('select * from activites where hidden=false or hidden is null')?>;
 
@@ -13,25 +13,25 @@
 
         $scope.eleves_activites = <?php echo phpSelectQuery('select * from utilisateur_activites')?>;
 
-        $scope.sessions = <?php echo phpSelectQuery('select * from sessions order by debut_session ASC')?>;
+        $scope.sessions = <?php echo phpSelectQuery('select * from sessions order by debut_session asc')?>;
 
-        $scope.codesAdmin = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and not CODE_ACCES="" order by administrateur')?>;
+        $scope.codesAdmin = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and not code_acces="" order by administrateur')?>;
 
         $scope.ensembles = [1, 2, 3];
 
-        $scope.utilisateursSansGroupes = <?php echo phpSelectQuery('select * from utilisateurs where (id_groupe is null or id_groupe = 0) and  CODE_ACCES="" order by nom ASC')?>;
+        $scope.utilisateursSansGroupes = <?php echo phpSelectQuery('select * from utilisateurs where (id_groupe is null or id_groupe = 0) and  code_acces="" order by nom asc')?>;
 
-        $scope.comptesAdministrateur = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and CODE_ACCES="" order by nom ASC')?>;
+        $scope.comptesAdministrateur = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and code_acces="" order by nom asc')?>;
 
         $scope.points_debut = <?php echo phpSelectQuery('select sum(ponderation) as points_debut, utilisateurs.id_utilisateur
             from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes 
             where activites_prevues.id_activite = activites.id_activite 
             and activites_prevues.presences_prises = 1
-            and utilisateur_activites.id_activite_prevue = activites_prevues.ID_activite_prevue 
+            and utilisateur_activites.id_activite_prevue = activites_prevues.id_activite_prevue 
             and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur
-            and utilisateurs.ID_Groupe = groupes.ID_Groupe
-            and groupes.ID_Session = sessions.ID_Session
-            and activites_prevues.date_activite > sessions.Debut_Session
+            and utilisateurs.id_groupe = groupes.id_groupe
+            and groupes.id_session = sessions.id_session
+            and activites_prevues.date_activite > sessions.debut_session
             and activites_prevues.date_activite < sessions.mi_session
             and utilisateur_activites.present = 1
             group by utilisateurs.id_utilisateur')?>;
@@ -40,16 +40,16 @@
          from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes 
             where activites_prevues.id_activite = activites.id_activite 
             and activites_prevues.presences_prises = 1
-            and utilisateur_activites.id_activite_prevue = activites_prevues.ID_activite_prevue 
+            and utilisateur_activites.id_activite_prevue = activites_prevues.id_activite_prevue 
             and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur
-            and utilisateurs.ID_Groupe = groupes.ID_Groupe
-            and groupes.ID_Session = sessions.ID_Session
-            and activites_prevues.date_activite > sessions.mi_Session
+            and utilisateurs.id_groupe = groupes.id_groupe
+            and groupes.id_session = sessions.id_session
+            and activites_prevues.date_activite > sessions.mi_session
             and activites_prevues.date_activite < sessions.fin_session
             and utilisateur_activites.present = 1
             group by utilisateurs.id_utilisateur')?>
 
-        $scope.penalites = <?php echo phpSelectQuery('select sum(ponderation) as penalite, utilisateurs.id_utilisateur from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes where activites_prevues.id_activite = activites.id_activite and utilisateur_activites.id_activite_prevue = activites_prevues.ID_activite_prevue and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur and utilisateurs.ID_Groupe = groupes.ID_Groupe and groupes.ID_Session = sessions.ID_Session and activites_prevues.date_activite > sessions.Debut_Session and activites_prevues.date_activite < sessions.fin_session and utilisateur_activites.present = 0 and activites_prevues.presences_prises = 1 group by utilisateurs.id_utilisateur')?>;
+        $scope.penalites = <?php echo phpSelectQuery('select sum(ponderation) as penalite, utilisateurs.id_utilisateur from utilisateurs, activites, activites_prevues, utilisateur_activites, sessions, groupes where activites_prevues.id_activite = activites.id_activite and utilisateur_activites.id_activite_prevue = activites_prevues.id_activite_prevue and utilisateur_activites.id_utilisateur = utilisateurs.id_utilisateur and utilisateurs.id_groupe = groupes.id_groupe and groupes.id_session = sessions.id_session and activites_prevues.date_activite > sessions.debut_session and activites_prevues.date_activite < sessions.fin_session and utilisateur_activites.present = 0 and activites_prevues.presences_prises = 1 group by utilisateurs.id_utilisateur')?>;
 
         $scope.responsableSelectionne;
 
@@ -298,7 +298,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "php_scripts/modifierActivitePrevue.php",
+                url: "php_scripts/modifieractiviteprevue.php",
                 data: {
                     'ID_ACTIVITE_PREVUE': $('#ID_ACT_PLAN').val(),
                     'ID_ACTIVITE': $('#mod_nom_act').val(),
@@ -378,7 +378,7 @@
         $scope.saveAdmin = function() {
             $.ajax({
                 type: "POST",
-                url: "php_scripts/updateAdmin.php",
+                url: "php_scripts/updateadmin.php",
                 data: {
                     'user': $('#utilisateurNivAdmin').val(),
                     'admin': $('#niveauUser').val()
@@ -407,7 +407,7 @@
         $scope.activiteFromId = function(id) {
 
             let act = $scope.activites.filter(function(ac) {
-                return ac.ID_Activite == id;
+                return ac.id_activite == id;
             })[0];
 
             return act;
@@ -467,12 +467,12 @@
         $scope.getElevesForActivitePrevue = function(activite) {
 
             let liste_el_ac = ($scope.eleves_activites.filter(function(ac) {
-                return ac.ID_Activite_Prevue == activite;
+                return ac.id_activite_prevue == activite;
             }));
 
 
             var listeId = liste_el_ac.map(function(a) {
-                return a.ID_Utilisateur;
+                return a.id_utilisateur;
             });
 
             let arr = [];
@@ -487,7 +487,7 @@
         $scope.getPresenceForEleve = function(activite_prevue, eleve) {
             try {
                 let present = ($scope.eleves_activites.filter(function(ac) {
-                    return ac.ID_Activite_Prevue == activite_prevue && ac.ID_Utilisateur == eleve;
+                    return ac.id_activite_prevue == activite_prevue && ac.id_utilisateur == eleve;
                 }))[0].Present;
 
                 if (present == 1) {
@@ -505,7 +505,7 @@
             if (confirm("Vous êtes sur le point de supprimer cette activité, êtes vous sûr?") == true) {
                 $.ajax({
                     type: "POST",
-                    url: "php_scripts/annulerActivite.php",
+                    url: "php_scripts/annuleractivite.php",
                     data: {
                         'ID_ACTIVITE': activite,
                     }, //TODO: CHANGE PROF ID
@@ -549,7 +549,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "php_scripts/prendrePresence.php",
+                url: "php_scripts/prendrepresence.php",
                 data: {
                     'PRESENTS': values,
                     'ACTIVITE': $scope.activiteSelectionne
@@ -617,7 +617,7 @@
                     'nb_codes': $("#codeGroupe0").val()
                 },
                 success: function(data) {
-                    alert(data);
+                    
                     location.reload();
 
                 },
@@ -663,7 +663,7 @@
             if (confirm("Êtes-vous sûr de vouloir promouvoir cet utilisateur?"))
                 $.ajax({
                     type: "POST",
-                    url: "php_scripts/updateAdmin.php",
+                    url: "php_scripts/updateadmin.php",
                     data: {
 
                         'user': id_user,
@@ -687,7 +687,7 @@
                         if (confirm("Êtes-vous sûr de vouloir rétrograder cet utilisateur?"))
                 $.ajax({
                     type: "POST",
-                    url: "php_scripts/updateAdmin.php",
+                    url: "php_scripts/updateadmin.php",
                     data: {
 
                         'user': id_user,
