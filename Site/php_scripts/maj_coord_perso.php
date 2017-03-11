@@ -2,7 +2,7 @@
 	session_start();
 	include_once 'connexion_bd.php';
 	include_once 'formater_champ.php';
-	include_once 'queryFunctions.php';
+	include_once 'queryfunctions.php';
 
 	function mettre_a_jour($id){
 		$req = "update utilisateurs

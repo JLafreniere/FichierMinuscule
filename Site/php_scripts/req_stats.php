@@ -1,5 +1,5 @@
 <?php
-include_once 'queryFunctions.php';
+include_once 'queryfunctions.php';
 
 
 

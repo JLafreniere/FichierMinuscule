@@ -4,7 +4,7 @@ session_start();
 <html ng-app="app_profil" ng-controller="ctrl">
 <head>
 
-  <?php include 'components/headContent.php' ?>
+  <?php include 'components/headcontent.php' ?>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/ajax_coord_perso.js"></script>
 </head>
@@ -301,7 +301,7 @@ obtenir_info($_SESSION['uid']);
 	 Inputmask({"mask": "(999) 999-9999", showMaskOnHover: false }).mask(selector);
 </script>
 
- <?php include 'js/ScriptsProfil.php'; ?>
+ <?php include 'js/scriptsprofil.php'; ?>
 
 
  <script>
