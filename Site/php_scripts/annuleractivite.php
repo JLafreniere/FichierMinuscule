@@ -14,7 +14,7 @@
 	}else{ header('Location: accueil.php');};
 
 	
-	$query = "update activites_prevues set hidden=1, presences_prises = 0 where ID_Activite_Prevue = ".$act;
+	$query = "update activites_prevues set hidden=1, presences_prises = 0 where id_activite_prevue = ".$act;
 
 	include_once 'connexion_bd.php';
 	$mysqli = connexion();

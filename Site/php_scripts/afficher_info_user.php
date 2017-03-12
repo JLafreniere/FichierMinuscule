@@ -9,22 +9,22 @@ function obtenir_info($id)
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       //Set Prenom
-      echo "<script>$('#prenom_user').val('".str_replace("'","\'",$row['Prenom'])."');</script>";
+      echo "<script>$('#prenom_user').val('".str_replace("'","\'",$row['prenom'])."');</script>";
 
       //Set Nom
-      echo "<script>$('#nom').val('".str_replace("'","\'",$row['Nom'])."');</script>";
+      echo "<script>$('#nom').val('".str_replace("'","\'",$row['nom'])."');</script>";
 
       //Set Courriel
-      echo "<script>$('#email').val('".$row['Courriel']."');</script>";
+      echo "<script>$('#email').val('".$row['courriel']."');</script>";
       
       //Set Téléphone
-      echo "<script>$('#tel').val('".$row['Telephone']."');</script>";
+      echo "<script>$('#tel').val('".$row['telephone']."');</script>";
       
       //Set Sexe
-      echo "<script>$('input[name=sexe][value=\"".$row['Sexe']."\"]').prop(\"checked\",true);</script>";
+      echo "<script>$('input[name=sexe][value=\"".$row['sexe']."\"]').prop(\"checked\",true);</script>";
       
        //Set Lien Personne ressource
-      echo "<script>$('#type_utilisateur_profil').val('{$row['Type_Utilisateur']}');</script>";
+      echo "<script>$('#type_utilisateur_profil').val('{$row['type_utilisateur']}');</script>";
     }
   $result->close();
   }
@@ -41,7 +41,7 @@ function obtenir_info($id)
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       
-      if ($row['ID_Groupe'] == 0)
+      if ($row['id_groupe'] == 0)
       {
         echo "<script>$('#section_type_utilisateur').show();</script>";
       }

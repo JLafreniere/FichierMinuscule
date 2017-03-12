@@ -13,7 +13,7 @@ if(isset($_SESSION['admin'])){
 
 <html ng-app='app_stats' ng-controller="ctrl">
   <head>
-    <?php include 'components/headContent.php';?>
+    <?php include 'components/headcontent.php';?>
     <title>Défi Santé - Statistiques</title>
   </head>
   <body class="ng-cloak">
@@ -43,7 +43,7 @@ if(isset($_SESSION['admin'])){
   		 <div class="input-field">
 	  <label for="select_session"></label>
       <select name="sel_session" id="select_session">
-      <option ng-repeat="session in sessions" class="col s3" value="{{session.ID_Session}}">{{session.Nom_Session}}</option>
+      <option ng-repeat="session in sessions" class="col s3" value="{{session.id_session}}">{{session.nom_session}}</option>
       </select>
       </div>
       	
@@ -207,7 +207,7 @@ if(isset($_SESSION['admin'])){
 
 <script src="https://cdn.rawgit.com/chingyawhao/materialize-clockpicker/master/dist/js/materialize.clockpicker.js"></script>
 
-<?php include 'js/ScriptsStats.php';
+<?php include 'js/scriptsstats.php';
 
 
 ?>

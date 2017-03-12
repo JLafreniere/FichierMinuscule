@@ -46,7 +46,7 @@
         else
         {     
           echo '
-            <form action="Accueil.php" method="POST">
+            <form action="accueil.php" method="POST">
             <ul id="nav-mobile" class="right">
             <li></li>
             <li style="margin-right: 20px"><a href="profil.php"><span id="Greet_User" class="hide-on-med-and-down"></span></a></li>

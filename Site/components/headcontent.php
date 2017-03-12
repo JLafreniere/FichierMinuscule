@@ -11,7 +11,7 @@
 
   <link rel="icon" href="http://i.imgur.com/Kgx7Ak4.png">
   <!--Let browser know website is optimized for mobile-->
-  <meta charset="uft8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php
   include 'php_scripts/queryfunctions.php';

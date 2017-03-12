@@ -24,7 +24,8 @@
 	{
 		if (($_POST['deb'] < $_POST['mi']) && ($_POST['mi'] < $_POST['fin']) )
 		{
-			$requete = "SELECT ID_Session from sessions where '{$_POST['deb']}' <= Fin_Session and '{$_POST['fin']}' >= Debut_Session";
+
+			$requete = "SELECT id_session from sessions where '{$_POST['deb']}' <= fin_session and '{$_POST['fin']}' >= debut_session";
 			$mysqli = connexion();
 			$result = $mysqli->query($requete);
 			if ($result->num_rows == 0)

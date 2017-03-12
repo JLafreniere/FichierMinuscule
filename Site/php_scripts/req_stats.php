@@ -20,11 +20,11 @@ switch ($_POST['stat']) {
 			group by u.type_utilisateur');
         break;
     case "ratioSexe":
-        echo phpSelectQuery('SELECT s.Nom_Session,u.sexe,count(*) as nbr
+        echo phpSelectQuery('SELECT s.nom_session,u.sexe,count(*) as nbr
 			FROM utilisateurs u, sessions s
 			where u.code_acces = "" AND
-		    u.Date_Inscription BETWEEN s.Debut_Session and s.Fin_Session AND
-	        s.ID_Session = '.$_POST["session"].'
+		    u.date_inscription BETWEEN s.debut_session and s.fin_session AND
+	        s.id_session = '.$_POST["session"].'
 	 		group by u.sexe');
         break;
     case "nbAvecSansGroupe":
@@ -33,13 +33,13 @@ switch ($_POST['stat']) {
             from utilisateurs, sessions 
             where id_groupe = 0 and 
      		code_acces = "" and
-            date_inscription BETWEEN Debut_Session and Fin_Session AND
+            date_inscription BETWEEN debut_session and fin_session AND
      		id_session = '.$_POST["session"].' ) aucun_groupe,
 			(select count(*) as "nbr" 
 			 from utilisateurs, sessions
 			 where id_groupe > 0 and 
 		     		code_acces = "" and
-		            date_inscription BETWEEN Debut_Session and Fin_Session AND
+		            date_inscription BETWEEN debut_session and fin_session AND
 		     		id_session = '.$_POST["session"].' ) avec_groupe;');
         break;
     case "utilisateursParEnsemble":
@@ -74,29 +74,13 @@ switch ($_POST['stat']) {
 			group by s.id_session) participations,
 			(select s.nom_session,count(*) as "nbr_eleves"
 			from utilisateurs u, sessions s
-			where u.date_inscription BETWEEN s.debut_session and s.Fin_Session AND
+			where u.date_inscription BETWEEN s.debut_session and s.fin_session AND
 				  s.id_session = '.$_POST["session"].' AND
 			      u.code_acces ="" AND
-		          u.Type_Utilisateur = "eleve") eleves
+		          u.type_utilisateur = "eleve") eleves
 		');
         break;
 }
-
-
-
-
-
-/*
-groupesParEnsemble
-utilisateursParType
-ratioSexe
-nbAvecSansGroupe
-utilisateursParEnsemble
-participationParActiviteParSession
-participationMoyenneParEtudiant
- */
-
-
 
 ?>
 

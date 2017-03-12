@@ -33,7 +33,7 @@ function verifier_user_existant($username,$pwd_input)
 
 $valide = false;
 //VALIDER QUE LE FORMULAIRE SOIT POSTÉ AVEC UN CODE D'ACCÈS VALIDE
-$query = "select id_utilisateur from utilisateurs where BINARY CODE_ACCES = '".$_POST['code']."'";
+$query = "select id_utilisateur from utilisateurs where BINARY code_acces = '".$_POST['code']."'";
   
   $mysqli = connexion();
   if ($result = $mysqli->query($query)) {
@@ -72,8 +72,10 @@ if($valide){
 
           $query = "update utilisateurs set nom=".guillemeter(formater($_POST['nom'])).
                    ", prenom=".guillemeter(formater($_POST['prenom'])).", username=".guillemeter(formater($_POST['username'])).
-                   ", actif=1, courriel=".guillemeter(formater($_POST['courriel'])).",   telephone=".guillemeter($_POST['telephone']).
-                   ", sexe=".guillemeter(formater($_POST['sexe'])).", password='".str_replace("'","''",$pass)."', Type_Utilisateur='".$_POST['type_utilisateur']."', Date_Inscription = '$date_insc',code_acces='' where code_acces=".guillemeter($_POST['code']).";";
+
+                   ", actif=1, courriel=".guillemeter(formater($_POST['courriel'])).", telephone=".guillemeter($_POST['telephone']).
+
+                   ", sexe=".guillemeter(formater($_POST['sexe'])).", password='".str_replace("'","''",$pass)."', type_utilisateur='".$_POST['type_utilisateur']."', date_inscription = '$date_insc',code_acces='' where code_acces=".guillemeter($_POST['code']).";";
           $mysqli = connexion();
           $mysqli->query($query);
           echo "Inscription réussie";

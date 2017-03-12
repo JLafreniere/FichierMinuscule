@@ -14,7 +14,7 @@
 
 	$act=$_POST['ID_ACTIVITE'];
 
-	$query = "update activites set hidden=true where ID_Activite = ".$act;
+	$query = "update activites set hidden=true where id_activite = ".$act;
 
 		ECHO $query;
 		$mysqli = connexion();

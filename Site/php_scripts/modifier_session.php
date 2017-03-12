@@ -14,6 +14,7 @@
 
 include_once 'connexion_bd.php';
 	include_once 'formater_champ.php';
+
 	function phpQuery($query){
     $mysqli = connexion();
 	$myArray = array();
@@ -27,17 +28,17 @@ if(($_POST['nom'] !='') && ($_POST['deb'] !='') && ($_POST['mi'] !='') && ($_POS
 	{
 	if (($_POST['deb'] < $_POST['mi']) && ($_POST['mi'] < $_POST['fin']) )
 	{
-		$requete = "SELECT ID_Session from sessions where '{$_POST['deb']}' <= Fin_Session and '{$_POST['fin']}' >= Debut_Session and ID_Session != {$_POST['id_session']} ";
+		$requete = "SELECT id_session from sessions where '{$_POST['deb']}' <= fin_session and '{$_POST['fin']}' >= debut_session and id_session != {$_POST['id_session']} ";
 		$mysqli = connexion();
 		$result = $mysqli->query($requete);
 		if ($result->num_rows == 0)
 		{
 		    $req = "UPDATE sessions
-		    	set Nom_Session = '".formater($_POST['nom'])."',
-					Debut_Session = '{$_POST['deb']}',
-					Mi_Session = '{$_POST['mi']}',
-					Fin_Session = '{$_POST['fin']}'
-					where ID_Session = {$_POST['id_session']}";
+		    	set nom_session = '".formater($_POST['nom'])."',
+					debut_session = '{$_POST['deb']}',
+					mi_session = '{$_POST['mi']}',
+					fin_session = '{$_POST['fin']}'
+					where id_session = {$_POST['id_session']}";
 
 			echo phpQuery($req);
 			echo "Mise à jour de la session réussie";

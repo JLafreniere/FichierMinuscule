@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	}else{ header('Location: accueil.php');};
 
 
- echo phpQuery('delete from groupes where ID_Groupe = '.$_POST['id_groupe'])?>
+ echo phpQuery('delete from groupes where id_groupe = '.$_POST['id_groupe'])?>
 ?>
 
 

@@ -488,6 +488,7 @@
             try {
                 let present = ($scope.eleves_activites.filter(function(ac) {
                     return ac.id_activite_prevue == activite_prevue && ac.id_utilisateur == eleve;
+
                 }))[0].present;
                 
                 if (present == 1) {

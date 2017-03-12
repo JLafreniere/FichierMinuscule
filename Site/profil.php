@@ -126,12 +126,12 @@ session_start();
 
            <!-- Chaque LI représente 1 activité -->
            <li  ng-repeat="activite in activites" id="li_activite">
-           <div class="collapsible-header"><i class="material-icons">directions_bike</i>{{activite.Nom_Activite}} {{activite.date_activite}}<i class=" material-icons right " ng-click="annuler_participation(activite)" >cancel</i></div>
+           <div class="collapsible-header"><i class="material-icons">directions_bike</i>{{activite.nom_activite}} {{activite.date_activite}}<i class=" material-icons right " ng-click="annuler_participation(activite)" >cancel</i></div>
            <div class="collapsible-body">
-           <input type="hidden" id="id_act_utilisateur" value="{{activite.ID_Eleve_Activite}}"/>
+           <input type="hidden" id="id_act_utilisateur" value="{{activite.id_eleve_activite}}"/>
             <div class="row">
                 <div class="input-field col s6 l4">
-                  <input id="nom_activite" type="text" class="validate" disabled value="{{activite.Nom_Activite}}" format='yyyy-mm-dd' />
+                  <input id="nom_activite" type="text" class="validate" disabled value="{{activite.nom_activite}}" />
                   <label for="nom_activite">Nom de l'activité</label>
                 </div>
               </div>
@@ -144,35 +144,35 @@ session_start();
 
                 <div class="input-field col s6 l4">
                     <label for="heure_deb">Heure de début</label>
-                    <input id="heure_deb"  type="text" value="{{activite.Heure_Debut}}" disabled />
+                    <input id="heure_deb"  type="text" value="{{activite.heure_debut}}" disabled />
                 </div>
                 <div class="input-field col s6 l4">
                      <label for="duree">Durée (Minutes)</label>
-                  <input type="text" id="duree" name="duree" value="{{activite.Duree}}" disabled />
+                  <input type="text" id="duree" name="duree" value="{{activite.duree}}" disabled />
                  </div>
                 </div>
                 <div class="row">
                 <div class="input-field col s6 l4">
                   <label  for="frais">Frais de l'activité</label>
-                  <input type="text" id="frais" name="frais" value="{{activite.Frais}}" disabled />
+                  <input type="text" id="frais" name="frais" value="{{activite.frais}}" disabled />
                 </div>
               
                 <div class="input-field col s6 l4">
                   <label  for="point">Nombre de points</label>
-                  <input type="text" step="0.5" maximum="3" minimum="0" id="point" name="point" value="{{activite.Ponderation}}" disabled />
+                  <input type="text" step="0.5" maximum="3" minimum="0" id="point" name="point" value="{{activite.ponderation}}" disabled />
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s12 l12">
-                  <input id="endroit" type="text" value="{{activite.Endroit}}" disabled />
+                  <input id="endroit" type="text" value="{{activite.endroit}}" disabled />
                   <label for="endroit">Endroit</label>
                 </div>
               </div>
                   
               <div class="row">
                 <div class="input-field col s12 l12">
-                  <input id="commentaire" type="text" value="{{activite.Commentaire}}" disabled />
+                  <input id="commentaire" type="text" value="{{activite.commentaire}}" disabled />
                   <label for="commentaire">Commentaire</label>
                 </div>
               </div>
@@ -209,9 +209,9 @@ session_start();
 
             <!-- ANGULAR REPEAT -->
             <div class="collapsible-header">
-              <i class="material-icons">directions_bike</i>{{activite .Nom_Activite}} le {{activite.Date_Activite}} à {{activite.Heure_debut}} 
+              <i class="material-icons">directions_bike</i>{{activite.nom_activite}} le {{activite.date_activite}} à {{activite.heure_debut}} 
                 
-              <span class=" hide-on-small-only new badge green right" data-badge-caption="">{{getElevesForActivitePrevue(activite.ID_activite_prevue).length}}/{{activite.Participants_Max}}</span>
+              <span class=" hide-on-small-only new badge green right" data-badge-caption="">{{getElevesForActivitePrevue(activite.id_activite_prevue).length}}/{{activite.participants_max}}</span>
               <i class=" hide-on-small-only material-icons right" ng-show="activite.presences_prises > 0">playlist_add_check</i>
               <i class=" hide-on-small-only material-icons right" style="pointer-events: visiblePainted !important;" ng-click="show_params(activite)">settings</i>
 
@@ -227,23 +227,23 @@ session_start();
               <table>
                 <b>Responsable: </b><b style="color: green">Vous êtes le responsable de cette activité</b>
                 <br>  
-                <b>Frais: </b> {{activite.Frais}}$ <br>  
-                <b>Endroit: </b> {{activite.Endroit}} <br>  
-                <b>Commentaire: </b>{{activiteFromId(activite.ID_Activite).Commentaire}} <br> 
-                <b>Nombre de participants inscrits: </b>{{getElevesForActivitePrevue(activite.ID_activite_prevue).length}}/{{activite.Participants_Max}}
+                <b>Frais: </b> {{activite.frais}}$ <br>  
+                <b>Endroit: </b> {{activite.endroit}} <br>  
+                <b>Commentaire: </b>{{activiteFromId(activite.id_activite).commentaire}} <br> 
+                <b>Nombre de participants inscrits: </b>{{getElevesForActivitePrevue(activite.id_activite_prevue).length}}/{{activite.participants_max}}
                   <br>
                   
                   <br>  
                     <h5>Liste de présences <span style="color: green; font-size: 0.75em" ng-show="activite.presences_prises > 0"> - Présences prises</span></h5> 
-                    <span ng-show="getElevesForActivitePrevue(activite.ID_activite_prevue).length == 0">Aucune inscription pour le moment <br><br></span>
-                 <table ng-show="getElevesForActivitePrevue(activite.ID_activite_prevue).length >= 1"> 
+                    <span ng-show="getElevesForActivitePrevue(activite.id_activite_prevue).length == 0">Aucune inscription pour le moment <br><br></span>
+                 <table ng-show="getElevesForActivitePrevue(activite.id_activite_prevue).length >= 1"> 
                  <thead><th>Nom</th><th class="center">Présent</th>  </thead>
-                <tr  ng-repeat="eleve in getElevesForActivitePrevue(activite.ID_activite_prevue)">
+                <tr  ng-repeat="eleve in getElevesForActivitePrevue(activite.id_activite_prevue)">
                   <td class="col s8">{{eleve.nom}}, {{eleve.prenom}}</td><td class="col s2 center">
                   
-                  <input class="field filled-in" ng-checked="{{getPresenceForEleve(activite.ID_activite_prevue, eleve.id_utilisateur)}}" type="checkbox" name="viewid{{activite.ID_activite_prevue}}" value="{{eleve.id_utilisateur}}" disabled readonly
-                  id="viewid{{activite.ID_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-right: 15px; margin-top: 15px">
-                  <label for="viewid{{activite.ID_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-top: 10px" ></label>
+                  <input class="field filled-in" ng-checked="{{getPresenceForEleve(activite.id_activite_prevue, eleve.id_utilisateur)}}" type="checkbox" name="viewid{{activite.id_activite_prevue}}" value="{{eleve.id_utilisateur}}" disabled readonly
+                  id="viewid{{activite.id_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-right: 15px; margin-top: 15px">
+                  <label for="viewid{{activite.id_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-top: 10px" ></label>
                   
                   
                 </td>
@@ -253,8 +253,8 @@ session_start();
             </table>
             <div style="text-align: center">
               <div class="row" style="margin-bottom: 0px">
-                <button type="button" data-target="modalPresence{{activite.ID_activite_prevue}}" class="btn l6 green s12 waves-effect waves-light " style="height: 30px; margin-top: 7px; margin-right: 7px"><span ng-show="activite.presences_prises > 0">Re</span>Prendre les présences</button>
-                <button ng-click="annulerActivite(activite.ID_activite_prevue)" type="button" class="btn l6 s12 red waves-effect waves-light " style="height: 30px; margin-top: 7px; margin-right: 7px">Annuler l'activité</button>
+                <button type="button" data-target="modalPresence{{activite.id_activite_prevue}}" class="btn l6 green s12 waves-effect waves-light " style="height: 30px; margin-top: 7px; margin-right: 7px"><span ng-show="activite.presences_prises > 0">Re</span>Prendre les présences</button>
+                <button ng-click="annulerActivite(activite.id_activite_prevue)" type="button" class="btn l6 s12 red waves-effect waves-light " style="height: 30px; margin-top: 7px; margin-right: 7px">Annuler l'activité</button>
               </div>
             </div>
           </div>
@@ -339,7 +339,7 @@ obtenir_info($_SESSION['uid']);
          <div class="input-field col s12">
            <select required id="mod_nom_act" name="nom_act">
            <option value="">Choisir une activité *</option>
-           <option ng-repeat="activite in liste_activites" value={{activite.ID_Activite}}>{{activite.Nom_Activite}}, {{activite.Duree}} minutes</option>
+           <option ng-repeat="activite in liste_activites" value={{activite.id_activite}}>{{activite.nom_activite}}, {{activite.duree}} minutes</option>
            </select>
            <label class="ACTIVER" for="mod_nom_act">Nom de l'activité *</label> 
          </div>
