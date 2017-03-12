@@ -19,7 +19,7 @@ participationMoyenneParEtudiant
     $scope.sessions = $scope.sessions = <?php echo phpSelectQuery('select * from sessions order by debut_session ASC')?>;
 
     $scope.session_selectionnee;
-    $scope.session_selectionnee = $scope.sessions[0].Nom_Session;
+    $scope.session_selectionnee = $scope.sessions[0].nom_session;
     $scope.master_id = $scope.sessions[0].id_session;
 
     $scope.stats = [
@@ -91,8 +91,8 @@ participationMoyenneParEtudiant
 
     $scope.nomSessionFromId = function(id) {
             let se = $scope.sessions.filter(function(se) {
-                return se.ID_Session == id;
-            })[0].Nom_Session;
+                return se.id_session == id;
+            })[0].nom_session;
 
             return se;
     }
