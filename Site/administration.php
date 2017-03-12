@@ -46,7 +46,7 @@ if(isset($_SESSION['admin'])){
               <select name="select_session" id="select_session" ng-model="SESSION" ng-change="test()">
                 <option value="-1" disabled>Veuillez sélectionner une session</option>
                 <option value="0" selected>Toutes les sessions</option>
-                <option ng-repeat="s in sessions" value="{{s.ID_Session}}">{{s.Nom_Session}}</option>
+                <option ng-repeat="s in sessions" value="{{s.id_session}}">{{s.nom_session}}</option>
               </select>
               <br>
               </div>
@@ -167,7 +167,7 @@ if(isset($_SESSION['admin'])){
 
               <table class="striped" align="center" ng-show="utilisateursSansGroupes.length > 0">
               <thead> <th>Utilisateurs</th></thead>
-                    <tr ng-repeat="eleve in utilisateursSansGroupes"><td> {{eleve.Nom}}, {{eleve.Prenom}}</td></tr>
+                    <tr ng-repeat="eleve in utilisateursSansGroupes"><td> {{eleve.nom}}, {{eleve.prenom}}</td></tr>
               </table>
               <div class="container">
 
@@ -208,12 +208,12 @@ if(isset($_SESSION['admin'])){
             <br><br>  <br>
           </div>
           <ul ng-show="activites_prevues.length > 0" class="collapsible" data-collapsible="expandable">
-            <li ng-repeat="activite in activites_prevues" class="coll_act_prev" ng-show="!(activite.presences_prises > 0 && masquerPresence) && !(toDate(activite.Date_Activite) < now && masquerPasse) ">
+            <li ng-repeat="activite in activites_prevues" class="coll_act_prev" ng-show="!(activite.presences_prises > 0 && masquerPresence) && !(toDate(activite.date_activite) < now && masquerPasse) ">
             <!-- ANGULAR REPEAT -->
             <div class="collapsible-header">
-              <i class="material-icons">directions_bike</i>{{activiteFromId(activite.ID_Activite).Nom_Activite}} le {{activite.Date_Activite}} à {{formatHeure(activite.Heure_debut)}}
+              <i class="material-icons">directions_bike</i>{{activiteFromId(activite.id_activite).nom_activite}} le {{activite.date_activite}} à {{formatHeure(activite.heure_debut)}}
                 
-              <span class=" hide-on-small-only new badge green right" data-badge-caption="">{{getElevesForActivitePrevue(activite.ID_activite_prevue).length}}/{{activite.Participants_Max}}</span>
+              <span class=" hide-on-small-only new badge green right" data-badge-caption="">{{getElevesForActivitePrevue(activite.id_activite_prevue).length}}/{{activite.participants_max}}</span>
               <i class=" hide-on-small-only material-icons right" ng-show="activite.presences_prises > 0">playlist_add_check</i>
               <i class=" hide-on-small-only material-icons right" style="pointer-events: visiblePainted !important;" ng-click="show_params(activite)">settings</i>
 
@@ -230,24 +230,24 @@ if(isset($_SESSION['admin'])){
               <table>
                 <b>Responsable: </b>{{eleveFromId(activite.responsable).nom}}, {{eleveFromId(activite.responsable).prenom}}
                 <br>  
-                <b>Frais: </b> {{activite.Frais}}$ <br>  
-                <b>Pondération: </b> {{activiteFromId(activite.ID_Activite).Ponderation}} point<span ng-show="activiteFromId(activite.ID_Activite).Ponderation > 1">s</span><br> 
-                <b>Endroit: </b> {{activite.Endroit}} <br>  
-                <b>Commentaire: </b>{{activiteFromId(activite.ID_Activite).Commentaire}} <br> 
-                <b>Nombre de participants inscrits: </b>{{getElevesForActivitePrevue(activite.ID_activite_prevue).length}}/{{activite.Participants_Max}}
+                <b>Frais: </b> {{activite.frais}}$ <br>  
+                <b>Pondération: </b> {{activiteFromId(activite.id_activite).Ponderation}} point<span ng-show="activiteFromId(activite.id_activite).Ponderation > 1">s</span><br> 
+                <b>Endroit: </b> {{activite.endroit}} <br>  
+                <b>Commentaire: </b>{{activiteFromId(activite.ID_Activite).commentaire}} <br> 
+                <b>Nombre de participants inscrits: </b>{{getElevesForActivitePrevue(activite.id_activite_prevue).length}}/{{activite.participants_max}}
                   <br>
                   
                   <br>  
                     <h5>Liste de présences <span style="color: green; font-size: 0.75em" ng-show="activite.presences_prises > 0"> - Présences prises</span></h5> 
-                    <span ng-show="getElevesForActivitePrevue(activite.ID_activite_prevue).length == 0">Aucune inscription pour le moment <br><br></span>
-                 <table ng-show="getElevesForActivitePrevue(activite.ID_activite_prevue).length >= 1"> 
+                    <span ng-show="getElevesForActivitePrevue(activite.id_activite_prevue).length == 0">Aucune inscription pour le moment <br><br></span>
+                 <table ng-show="getElevesForActivitePrevue(activite.id_activite_prevue).length >= 1"> 
                  <thead><th>Nom</th><th class="center">Présent</th>  </thead>
-                <tr  ng-repeat="eleve in getElevesForActivitePrevue(activite.ID_activite_prevue)">
+                <tr  ng-repeat="eleve in getElevesForActivitePrevue(activite.id_activite_prevue)">
                   <td class="col s8">{{eleve.nom}}, {{eleve.prenom}}</td><td class="col s2 center">
                   
-                  <input class="field filled-in" ng-checked="{{getPresenceForEleve(activite.ID_activite_prevue, eleve.id_utilisateur)}}" type="checkbox" name="viewid{{activite.ID_activite_prevue}}" value="{{eleve.id_utilisateur}}" disabled readonly
-                  id="viewid{{activite.ID_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-right: 15px; margin-top: 15px">
-                  <label for="viewid{{activite.ID_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-top: 10px" ></label>
+                  <input class="field filled-in" ng-checked="{{getPresenceForEleve(activite.id_activite_prevue, eleve.id_utilisateur)}}" type="checkbox" name="viewid{{activite.id_activite_prevue}}" value="{{eleve.id_utilisateur}}" disabled readonly
+                  id="viewid{{activite.id_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-right: 15px; margin-top: 15px">
+                  <label for="viewid{{activite.id_activite_prevue}}-{{eleve.id_utilisateur}}" style="margin-top: 10px" ></label>
                   
                   
                 </td>
@@ -259,8 +259,8 @@ if(isset($_SESSION['admin'])){
             <div style="text-align: center">
               
               <button type="button" class="btn green waves-effect waves-light" style="height: 30px !important" ng-click="show_params(activite)">Modifier</button><br>
-                <button type="button" ng-click="setActSelectionne(activite.ID_activite_prevue)" data-target="modalPresence" class="btn green waves-effect waves-light " style="height: 30px;"><span ng-show="activite.presences_prises > 0">Re</span>Prendre les présences</button><br>
-                <button ng-click="annulerActivite(activite.ID_activite_prevue)" type="button" class="btn red waves-effect waves-light " style="height: 30px;">Annuler l'activité</button>
+                <button type="button" ng-click="setActSelectionne(activite.id_activite_prevue)" data-target="modalPresence" class="btn green waves-effect waves-light " style="height: 30px;"><span ng-show="activite.presences_prises > 0">Re</span>Prendre les présences</button><br>
+                <button ng-click="annulerActivite(activite.id_activite_prevue)" type="button" class="btn red waves-effect waves-light " style="height: 30px;">Annuler l'activité</button>
               
             </div>
           </div>
@@ -326,11 +326,11 @@ if(isset($_SESSION['admin'])){
                   <th class="center">Activités Disponibles</th><th class="center hide-on-med-and-down">Durée (Minutes)</th><th class="center hide-on-med-and-down">Pondération</th><th></th>
                 </thead>                
                 <tr ng-repeat="activite in activites">
-                  <td class="center">{{activite.Nom_Activite}}</td>
-                  <td class="center hide-on-med-and-down">{{activite.Duree}}</td>
-                  <td class="center hide-on-med-and-down">{{activite.Ponderation}} point<span ng-show="activite.Ponderation>1">s</span></td> 
+                  <td class="center">{{activite.nom_activite}}</td>
+                  <td class="center hide-on-med-and-down">{{activite.duree}}</td>
+                  <td class="center hide-on-med-and-down">{{activite.ponderation}} point<span ng-show="activite.ponderation>1">s</span></td> 
                   <td class="center"><a class="btn-floating  waves-effect waves-light green" ng-click="modifierActivite(activite)"><i class="material-icons">edit</i></a></td>
-                  <td class="center"><a class="btn-floating  waves-effect waves-light red" ng-click="supprimerActivite(activite.ID_Activite)"><i class="material-icons">delete</i></a></td>
+                  <td class="center"><a class="btn-floating  waves-effect waves-light red" ng-click="supprimerActivite(activite.id_activite)"><i class="material-icons">delete</i></a></td>
                 </tr>
   
 
@@ -363,7 +363,7 @@ if(isset($_SESSION['admin'])){
               <table class="striped"><thead><th>Nom de la session</th><th class="hide-on-med-and-down">Début</th>
               <th class="hide-on-med-and-down">Mi-Session</th>
               <th class="hide-on-med-and-down">Fin</th><th></th></thead>
-              <tr ng-repeat="session in sessions"><td>{{session.Nom_Session}}</td><td class="hide-on-med-and-down">{{session.Debut_Session}}</td><td class="hide-on-med-and-down">{{session.Mi_Session}}</td><td class="hide-on-med-and-down">{{session.Fin_Session}}</td><td><a class="btn-floating waves-effect waves-light green " ng-click="modifierSession(session)"><i class="material-icons">edit</i></a></td><td><a class="btn-floating waves-effect waves-light blue " ng-click="afficherStats(session.ID_Session)"><i class="material-icons">assessment</i></a></td>
+              <tr ng-repeat="session in sessions"><td>{{session.nom_session}}</td><td class="hide-on-med-and-down">{{session.debut_session}}</td><td class="hide-on-med-and-down">{{session.mi_session}}</td><td class="hide-on-med-and-down">{{session.fin_session}}</td><td><a class="btn-floating waves-effect waves-light green " ng-click="modifierSession(session)"><i class="material-icons">edit</i></a></td><td><a class="btn-floating waves-effect waves-light blue " ng-click="afficherStats(session.id_session)"><i class="material-icons">assessment</i></a></td>
               </tr>
               </table>
               <br>
@@ -397,7 +397,7 @@ if(isset($_SESSION['admin'])){
          <div class="input-field col s12">
            <select required id="mod_nom_act" name="nom_act">
            <option value="">Choisir une activité *</option>
-           <option ng-repeat="activite in activites" value={{activite.ID_Activite}}>{{activite.Nom_Activite}}, {{activite.Duree}} minutes</option>
+           <option ng-repeat="activite in activites" value={{activite.id_activite}}>{{activite.nom_Activite}}, {{activite.duree}} minutes</option>
            </select>
            <label class="ACTIVER" for="mod_nom_act">Nom de l'activité *</label> 
          </div>
@@ -441,7 +441,7 @@ if(isset($_SESSION['admin'])){
          <div class="input-field col s12 l12">
               <select id="mod_responsable" name="mod_responsable">
               <option value="null">Choisir un responsable</option>
-              <option ng-repeat="admin in comptesAdministrateur" value="{{admin.id_utilisateur}}">{{admin.Nom}}, {{admin.Prenom}}</option>
+              <option ng-repeat="admin in comptesAdministrateur" value="{{admin.id_utilisateur}}">{{admin.nom}}, {{admin.prenom}}</option>
             </select>
          </div>
        </div>
