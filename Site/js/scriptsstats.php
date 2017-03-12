@@ -20,7 +20,7 @@ participationMoyenneParEtudiant
 
     $scope.session_selectionnee;
     $scope.session_selectionnee = $scope.sessions[0].Nom_Session;
-    $scope.master_id = $scope.sessions[0].ID_Session;
+    $scope.master_id = $scope.sessions[0].id_session;
 
     $scope.stats = [
     				{"stat":"groupesParEnsemble", "valeur":"", "label":"Nombre de groupes par ensemble", "yAxis": "Nombre de groupes", "statCompile":{}},

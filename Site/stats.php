@@ -43,7 +43,7 @@ if(isset($_SESSION['admin'])){
   		 <div class="input-field">
 	  <label for="select_session"></label>
       <select name="sel_session" id="select_session">
-      <option ng-repeat="session in sessions" class="col s3" value="{{session.ID_Session}}">{{session.Nom_Session}}</option>
+      <option ng-repeat="session in sessions" class="col s3" value="{{session.id_session}}">{{session.nom_session}}</option>
       </select>
       </div>
       	

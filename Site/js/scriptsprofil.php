@@ -11,7 +11,7 @@
         $scope.activites = <?php 
                             echo phpSelectQuery("select a.id_activite, a.nom_activite, ap.date_activite, ap.heure_debut, a.duree, a.ponderation, ap.frais, ap.endroit, a.commentaire,                           ua.id_eleve_activite, ap.id_activite_prevue
                                                 from utilisateur_activites ua, activites_prevues ap, activites a 
-                                                where ua.id_utilisateur = {$_session['uid']} and 
+                                                where ua.id_utilisateur = {$_SESSION['uid']} and 
                             (ap.hidden = 0 or ap.hidden is null) and
                                                 ua.id_activite_prevue = ap.id_activite_prevue and
                                                 ap.id_activite = a.id_activite
@@ -80,7 +80,7 @@
         $scope.eleves_activites = <?php echo phpSelectQuery('select * from utilisateur_activites')?>;
 
 
-        $scope.comptesAdministrateur = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and CODE_ACCES="" order by nom ASC')?>;
+        $scope.comptesAdministrateur = <?php echo phpSelectQuery('select * from utilisateurs where administrateur >= 1 and code_acces="" order by nom ASC')?>;
         $scope.activiteFromId = function(id) {
 
             let act = $scope.activites.filter(function(ac) {
@@ -110,13 +110,13 @@
         $scope.annuler_participation = function(activite) {
             console.log(activite);
 
-            if (confirm("Voulez-vous réellement annuler votre participation à l'activité: ".concat(activite.Nom_Activite).concat(" le ").concat(activite.date_activite))) {
+            if (confirm("Voulez-vous réellement annuler votre participation à l'activité: ".concat(activite.nom_activite).concat(" le ").concat(activite.date_activite))) {
 
                 $.ajax({
                     type: "POST",
                     url: "php_scripts/annuler_participation.php",
                     data: {
-                        'id_act_utilisateur': activite.ID_Eleve_Activite,
+                        'id_act_utilisateur': activite.id_eleve_activite,
                         'date_activite': $('#date_act').val(),
                         'heure': $('#heure_deb').val()
                     },
@@ -140,16 +140,14 @@
         $scope.show_params = function(activite) {
             
             $('#modal_mod_planif').modal('open');
-
-            $('#ID_ACT_PLAN').val(activite.ID_activite_prevue);
-
-            $('#mod_nom_act').val(activite.ID_Activite);
+            $('#ID_ACT_PLAN').val(activite.id_activite_prevue);
+            $('#mod_nom_act').val(activite.id_Activite);
             $('#mod_nom_act').material_select();
-            $('#mod_date_act').val(activite.Date_Activite);
-            $('#mod_heure_deb').val(activite.Heure_debut);
-            $('#mod_participants_max').val(activite.Participants_Max);
-            $('#mod_frais').val(activite.Frais);
-            $('#mod_endroit').val(activite.Endroit);
+            $('#mod_date_act').val(activite.date_activite);
+            $('#mod_heure_deb').val(activite.heure_debut);
+            $('#mod_participants_max').val(activite.participants_max);
+            $('#mod_frais').val(activite.frais);
+            $('#mod_endroit').val(activite.endroit);
             $('#mod_responsable').val(activite.responsable);
             $('#mod_responsable').material_select();
             $('.ACTIVER').addClass("active");
@@ -190,12 +188,12 @@
         $scope.getElevesForActivitePrevue = function(activite) {
 
             let liste_el_ac = ($scope.eleves_activites.filter(function(ac) {
-                return ac.ID_Activite_Prevue == activite;
+                return ac.id_activite_prevue == activite;
             }));
 
             
             var listeId = liste_el_ac.map(function(a) {
-                return a.ID_Utilisateur;
+                return a.id_utilisateur;
             });
 
             let arr = [];
