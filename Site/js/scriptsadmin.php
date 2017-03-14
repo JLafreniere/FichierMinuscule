@@ -612,7 +612,7 @@
 
 
         $scope.genererCodePourGroupe0 = function(){
-
+             $scope.codeGroupe = 0;
              $.ajax({
                 type: "POST",
                 url: "php_scripts/generercode.php",
@@ -622,7 +622,7 @@
                     'nb_codes': $("#codeGroupe0").val()
                 },
                 success: function(data) {
-                    
+                    alert(data);
                     location.reload();
 
                 },
